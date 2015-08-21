@@ -126,4 +126,17 @@ namespace Cheapees
       throw new NotImplementedException();
     }
   }
+
+  class Sales
+  {
+    //All details are on an order level. The price reflects the actual price paid by the customer.
+    public string SKU { get; set; }
+    public int Quantity { get; set; }
+    public string Marketplace { get; set; }
+    public double UnitPrice { get; set; }
+    public DateTime OrderTime { get; set; }
+    public string Invoice { get; set; }
+
+    public Sales() { }
+  }
 }
