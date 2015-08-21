@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Cheapees.StatusControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cheapees"
+             mc:Ignorable="d"
+             d:DesignHeight="200" d:DesignWidth="300">
+  <UserControl.Width>
+    Auto
+  </UserControl.Width>
+  <UserControl.Height>
+    Auto
+  </UserControl.Height>
+  <Expander Name="exp" Focusable="False" BorderBrush="DarkGray">
+    <Expander.Header>
+      <Grid Focusable="False">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Name="StatusTitle" FontFamily="Segoe UI Light" FontSize="24" Content="{Binding Title}"/>
+        <Image Grid.Column="1" Name="StatusIndicator" Source="{Binding StatusImage}" MaxHeight="25"></Image>
+      </Grid>
+    </Expander.Header>
+    <Expander.Background>White</Expander.Background>
+    <Grid Background="WhiteSmoke">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <ProgressBar Grid.Row="0" Height="10" Value="{Binding StatusPercentage}" Visibility="{Binding ProgressBarVisibility}" Foreground="Blue"></ProgressBar>
+      <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" FontWeight="Bold">Status:</Label>
+        <TextBlock Grid.Column="1" TextWrapping="Wrap" Padding="5" Name="txtblStatusDescription" Text="{Binding StatusDescription}"/>
+      </Grid>
+      <Grid Grid.Row="2">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" FontWeight="Bold">Last Update:</Label>
+        <TextBlock Grid.Column="1" TextWrapping="Wrap" Padding="5" Name="txtblLastUpdate" Text="{Binding LastUpdated}"/>
+      </Grid>
+      <Grid Grid.Row="3">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="1"  Padding="5" Name="btnRunNow" Focusable="False" IsEnabled="{Binding IsUpdatable}">
+          <Button.Background>
+            <SolidColorBrush Color="#FF22AAFF"/>
+          </Button.Background>
+          
+          Update Now
+        </Button>
+      </Grid>
+    </Grid>
+  </Expander>
+</UserControl>
