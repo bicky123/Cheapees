@@ -152,9 +152,13 @@ namespace Cheapees
               }
             }
           }
+          else if (responseToGetReportRequestList.GetReportRequestListResult.ReportRequestInfo[0].ReportProcessingStatus.Equals("_DONE_NO_DATA_"))
+          {
+            throw new Exception("Report returned with status _DONE_NO_DATA_");
+          }
           else
           {
-            for (int secondsTilRetry = 30; secondsTilRetry > 0; secondsTilRetry--)
+            for (int secondsTilRetry = 60; secondsTilRetry > 0; secondsTilRetry--)
             {
               this.StatusDescription = string.Format("Report status: {0} (Will check again in {1}s)", responseToGetReportRequestList.GetReportRequestListResult.ReportRequestInfo[0].ReportProcessingStatus, secondsTilRetry);
               Thread.Sleep(1000);
