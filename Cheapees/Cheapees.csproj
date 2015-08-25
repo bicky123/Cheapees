@@ -73,6 +73,11 @@
     <Compile Include="MWSRuntime\MwsXmlBuilder.cs" />
     <Compile Include="MWSRuntime\MwsXmlReader.cs" />
     <Compile Include="MWSRuntime\MwsXmlWriter.cs" />
+    <Compile Include="Service References\ChannelAdvisorInventoryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ChannelAdvisorOrderService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -224,6 +229,148 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.AddUpsellRelationshipResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfArrayOfBoolean.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfAttributeInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfBoolean.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfClassificationConfigurationInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfDistributionCenterInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfDistributionCenterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfDoesSkuExistResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfImageInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfInventoryItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfInventoryQuantityResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfInventoryUpsellInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfSynchInventoryItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfArrayOfUpdateInventoryItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfBoolean.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfInt32.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfQuantityInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfStoreInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.APIResultOfVariationInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.AssignLabelListToInventoryItemListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.DeleteInventoryItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.DeleteUpsellRelationshipResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.DoesSkuExistListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.DoesSkuExistResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetClassificationConfigurationInformationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetDistributionCenterListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetFilteredInventoryItemListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetFilteredSkuListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetInventoryItemAttributeListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetInventoryItemImageListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetInventoryItemListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetInventoryItemListWithFullDetailResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetInventoryItemQuantityInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetInventoryItemShippingInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetInventoryItemStoreInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetInventoryItemVariationInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetInventoryQuantityListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetInventoryQuantityResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.GetUpsellRelationshipResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.PingResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.RemoveLabelListFromInventoryItemListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.SynchInventoryItemListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.SynchInventoryItemResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.UpdateInventoryItemQuantityAndPriceListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\Cheapees.ChannelAdvisorInventoryService.UpdateInventoryItemQuantityAndPriceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ChannelAdvisorInventoryService\InventoryService.wsdl" />
     <None Include="Service References\ChannelAdvisorOrderService\Cheapees.ChannelAdvisorOrderService.APIResultOfArrayOfBoolean.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -322,6 +469,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ChannelAdvisorInventoryService\" />
     <WCFMetadataStorage Include="Service References\ChannelAdvisorOrderService\" />
   </ItemGroup>
   <ItemGroup>
@@ -336,7 +484,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Service References\ChannelAdvisorInventoryService\configuration91.svcinfo" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Services\MarketplaceWebService\Mock\CancelFeedSubmissionsResponse.xml" />
     <Resource Include="Services\MarketplaceWebService\Mock\CancelReportRequestsResponse.xml" />
@@ -359,6 +509,15 @@
     <Resource Include="Services\MarketplaceWebService\Mock\RequestReportResponse.xml" />
     <Resource Include="Services\MarketplaceWebService\Mock\SubmitFeedResponse.xml" />
     <Resource Include="Services\MarketplaceWebService\Mock\UpdateReportAcknowledgementsResponse.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ChannelAdvisorInventoryService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ChannelAdvisorInventoryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

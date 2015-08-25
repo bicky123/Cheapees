@@ -60,8 +60,8 @@ namespace Cheapees
       //caSalesVm.Update();
       //amzListingVm.Update();
       //fbaSalesVm.Update();
-      //caInventoryVm.Update();
-      fbaInventoryVm.Update();
+      caInventoryVm.Update();
+      //fbaInventoryVm.Update();
 
       List<UpdatableViewModelBase> viewModels = new List<UpdatableViewModelBase>();
       viewModels.Add(ftpVm);
