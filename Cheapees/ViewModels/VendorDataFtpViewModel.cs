@@ -16,7 +16,8 @@ namespace Cheapees
       this.Title = "Inventory Data - Vendor FTP";
       this.Description = "Retrieves vendor data through FTP downloads and updates the database.";
       this._uiUpdateThreshold = new TimeSpan(0, 0, 0, 1, 0);
-      this.ServiceId = "VendorDataFtp"; //DO NOT CHANGE AFTER COMMITTING TO DB
+      this.ServiceId = "VendorDataFtp";
+      this.GetLastUpdated();
 
       this.UpdateFrequency = new UpdateFrequency(new TimeSpan(0, 0, 0, 0, 0), true);
     }
@@ -46,6 +47,8 @@ namespace Cheapees
           this.ProgressBarVisibility = System.Windows.Visibility.Collapsed;
           this.StatusPercentage = 0;
           this.LastUpdated = DateTime.Now;
+
+          this.CommitServiceStatus();
         }
         catch (Exception e)
         {

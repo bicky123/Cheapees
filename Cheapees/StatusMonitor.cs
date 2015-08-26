@@ -24,6 +24,8 @@ namespace Cheapees
       }
     }
 
+    public bool AutoUpdate { get; private set; }
+
     public List<UpdatableViewModelBase> Services;
 
     //Constructors
@@ -31,6 +33,7 @@ namespace Cheapees
     {
       Services = services;
       CheckFrequency = new TimeSpan(0, 5, 0);
+      AutoUpdate = true;
     }
 
     public async void BeginChecking()
@@ -53,6 +56,21 @@ namespace Cheapees
                 s.Status = UpdatableStatus.UpdateNeeded;
                 TimeSpan ts = s.UpdateFrequency.UpdateThreshold;
                 s.StatusDescription = string.Format("This service hasn't been updated since {0}, which exceeds the required update frequency ({1})", s.LastUpdated, (s.UpdateFrequency.ShouldUpdateDaily ? "daily" : (string.Format("{0}d {1}h {2}m {3}s",ts.Days, ts.Hours, ts.Minutes, ts.Seconds))));
+
+                if (AutoUpdate)
+                {
+                  for (int i = 3; i > 0; i--)
+                  {
+                    s.StatusDescription = string.Format("Auto-update is enabled. Attempting to update in {0}s...", i);
+                    Thread.Sleep(1000);
+                  }
+                  s.Update();
+                }
+              }
+              else
+              {
+                s.Status = UpdatableStatus.Ok;
+                s.StatusDescription = string.Format("This service is scheduled to update {0}", s.UpdateFrequency.ShouldUpdateDaily? "tomorrow" : (s.LastUpdated + s.UpdateFrequency.UpdateThreshold).ToLongDateString() + " at " + (s.LastUpdated + s.UpdateFrequency.UpdateThreshold).ToLongTimeString());
               }
             }
           }

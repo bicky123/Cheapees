@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Linq;
 
 namespace Cheapees
 {
@@ -206,7 +207,7 @@ namespace Cheapees
       StatusPercentage = 0;
       ProgressBarVisibility = System.Windows.Visibility.Collapsed;
       _isUpdatable = true;
-      //GetLastUpdated();
+      
     }
 
     /// <summary>
@@ -214,8 +215,33 @@ namespace Cheapees
     /// </summary>
     public void GetLastUpdated()
     {
-      //use ServiceId to look up the last update DateTime
-      throw new NotImplementedException();
+      if (ServiceId == null)
+        throw new Exception("Service Status cannot be committed to the database because the ServiceId is null");
+
+      using (var db = new CheapeesEntities())
+      {
+        var entry = db.ServiceStatuses.Where(o => o.ServiceId.Equals(this.ServiceId)).SingleOrDefault();
+        if (entry != null)
+          this.LastUpdated = (DateTime)entry.LastSuccessfulUpdate;
+      }
+    }
+
+    public void CommitServiceStatus()
+    {
+      using (var db = new CheapeesEntities())
+      {
+        var entry = db.ServiceStatuses.Where(o => o.ServiceId.Equals(this.ServiceId)).SingleOrDefault();
+        if (entry != null)
+          entry.LastSuccessfulUpdate = this.LastUpdated;
+        else
+        {
+          ServiceStatus status = new ServiceStatus();
+          status.ServiceId = this.ServiceId;
+          status.LastSuccessfulUpdate = this.LastUpdated;
+          db.ServiceStatuses.Add(status);
+        }
+        db.SaveChanges();
+      }
     }
 
     /// <summary>

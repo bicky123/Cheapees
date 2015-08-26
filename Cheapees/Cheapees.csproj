@@ -35,10 +35,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +68,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CheapeesModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CheapeesModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CheapeesModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CheapeesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CheapeesModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CheapeesModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantFulfilledSale.cs">
+      <DependentUpon>CheapeesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MWSRuntime\AbstractMwsObject.cs" />
     <Compile Include="MWSRuntime\IMwsCall.cs" />
     <Compile Include="MWSRuntime\IMwsObject.cs" />
@@ -82,6 +110,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceStatus.cs">
+      <DependentUpon>CheapeesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\MarketplaceWebService\Attributes\MarketplaceWebServiceAttribute.cs" />
     <Compile Include="Services\MarketplaceWebService\Attributes\MarketplaceWebServiceRequestHeaderAttribute.cs" />
@@ -224,6 +255,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="CheapeesModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CheapeesModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CheapeesModel.edmx.diagram">
+      <DependentUpon>CheapeesModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -518,6 +557,21 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CheapeesModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CheapeesModel.edmx</DependentUpon>
+      <LastGenOutput>CheapeesModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CheapeesModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CheapeesModel.edmx</DependentUpon>
+      <LastGenOutput>CheapeesModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

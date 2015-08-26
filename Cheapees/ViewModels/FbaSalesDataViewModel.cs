@@ -18,6 +18,7 @@ namespace Cheapees
       this.Description = "Retrieves sales data for orders Fulfilled-By-Amazon.";
       this._uiUpdateThreshold = new TimeSpan(0, 0, 0, 1, 0);
       this.ServiceId = "SalesDataFba";
+      this.GetLastUpdated();
 
       this.UpdateFrequency = new UpdateFrequency(new TimeSpan(0, 0, 0, 0, 0), true);
     }
@@ -42,6 +43,8 @@ namespace Cheapees
           this.ProgressBarVisibility = System.Windows.Visibility.Collapsed;
           this.StatusPercentage = 0;
           this.LastUpdated = DateTime.Now;
+
+          this.CommitServiceStatus();
         }
         catch (Exception e)
         {

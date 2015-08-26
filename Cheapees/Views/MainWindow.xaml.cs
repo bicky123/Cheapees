@@ -60,16 +60,16 @@ namespace Cheapees
       //caSalesVm.Update();
       //amzListingVm.Update();
       //fbaSalesVm.Update();
-      caInventoryVm.Update();
+      //caInventoryVm.Update();
       //fbaInventoryVm.Update();
 
       List<UpdatableViewModelBase> viewModels = new List<UpdatableViewModelBase>();
-      viewModels.Add(ftpVm);
+      //viewModels.Add(ftpVm);
       viewModels.Add(caSalesVm);
-      viewModels.Add(amzListingVm);
-      viewModels.Add(fbaSalesVm);
-      viewModels.Add(caInventoryVm);
-      viewModels.Add(fbaInventoryVm);
+      //viewModels.Add(amzListingVm);
+      //viewModels.Add(fbaSalesVm);
+      //viewModels.Add(caInventoryVm);
+      //viewModels.Add(fbaInventoryVm);
 
       StatusMonitor monitor = new StatusMonitor(viewModels);
       monitor.BeginChecking();

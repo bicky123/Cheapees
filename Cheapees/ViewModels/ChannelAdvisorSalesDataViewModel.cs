@@ -17,7 +17,9 @@ namespace Cheapees
       this._uiUpdateThreshold = new TimeSpan(0, 0, 0, 1, 0);
       this.ServiceId = "SalesDataChannelAdvisor";
 
-      this.UpdateFrequency = new UpdateFrequency(new TimeSpan(0, 0, 0, 15, 0), false);
+      this.GetLastUpdated();
+
+      this.UpdateFrequency = new UpdateFrequency(new TimeSpan(0, 0, 4, 0, 0), false);
     }
 
     protected override async Task UpdateAsync()
@@ -32,9 +34,6 @@ namespace Cheapees
           //Download sales data
           DownloadSalesData();
 
-          //Update database
-          //CommitToDatabase();
-
           //here, it should trigger anything that should happen if database fields are changed (recalculating)
 
           //Status
@@ -43,6 +42,9 @@ namespace Cheapees
           this.ProgressBarVisibility = System.Windows.Visibility.Collapsed;
           this.StatusPercentage = 0;
           this.LastUpdated = DateTime.Now;
+
+          //Update DB Statuses
+          this.CommitServiceStatus();
         }
         catch (Exception e)
         {
@@ -70,7 +72,11 @@ namespace Cheapees
         OrderServiceSoapClient ordClient = new OrderServiceSoapClient();
 
         //Get latest order date in DB, and pull all orders since then
-        DateTime beginTime = DateTime.Now.AddDays(-3);
+        DateTime beginTime;
+        using (var db = new CheapeesEntities())
+        {
+          beginTime = (DateTime)db.MerchantFulfilledSales.OrderByDescending(o => o.OrderTime).FirstOrDefault().OrderTime;
+        }
 
         OrderCriteria criteria = new OrderCriteria();
         criteria.OrderCreationFilterBeginTimeGMT = beginTime;
@@ -99,7 +105,7 @@ namespace Cheapees
               sale.SKU = item.SKU;
               sale.Quantity = item.Quantity;
               sale.Marketplace = item.ItemSaleSource;
-              sale.UnitPrice = (double)item.UnitPrice;
+              sale.UnitPrice = item.UnitPrice;
               sale.OrderTime = ((DateTime)order.OrderTimeGMT).ToLocalTime();
               sale.Invoice = order.OrderID.ToString();
 
@@ -113,7 +119,7 @@ namespace Cheapees
           response = ordClient.GetOrderList(cred, accountID, criteria);
         }
 
-        //Do something with listOfSales
+        CommitToDatabase(listOfSales);
       }
       catch (Exception e)
       {
@@ -121,9 +127,28 @@ namespace Cheapees
       }
     }
 
-    private void CommitToDatabase()
+    private void CommitToDatabase(List<Sales> sales)
     {
-      throw new NotImplementedException();
+      using (var db = new CheapeesEntities())
+      {
+        foreach (var sale in sales)
+        {
+          if (db.MerchantFulfilledSales.Local.Count(o => (o.Invoice.Equals(sale.Invoice) && o.Sku.Equals(sale.SKU))) == 0 && db.MerchantFulfilledSales.Count(o => (o.Invoice.Equals(sale.Invoice) && o.Sku.Equals(sale.SKU))) == 0)
+          {
+            MerchantFulfilledSale dbSale = new MerchantFulfilledSale();
+            dbSale.Invoice = sale.Invoice;
+            dbSale.Marketplace = sale.Marketplace;
+            dbSale.OrderTime = sale.OrderTime;
+            dbSale.Quantity = sale.Quantity;
+            dbSale.Sku = sale.SKU;
+            dbSale.UnitPrice = sale.UnitPrice;
+
+            db.MerchantFulfilledSales.Add(dbSale);
+          }
+
+        }
+        db.SaveChanges();
+      }
     }
   }
 
@@ -133,7 +158,7 @@ namespace Cheapees
     public string SKU { get; set; }
     public int Quantity { get; set; }
     public string Marketplace { get; set; }
-    public double UnitPrice { get; set; }
+    public decimal UnitPrice { get; set; }
     public DateTime OrderTime { get; set; }
     public string Invoice { get; set; }
 

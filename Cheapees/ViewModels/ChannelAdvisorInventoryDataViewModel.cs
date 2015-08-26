@@ -16,6 +16,7 @@ namespace Cheapees
       this.Description = "Retrieves all inventory details from ChannelAdvisor.";
       this._uiUpdateThreshold = new TimeSpan(0, 0, 0, 1, 0);
       this.ServiceId = "InventoryDataChannelAdvisor";
+      this.GetLastUpdated();
 
       this.UpdateFrequency = new UpdateFrequency(new TimeSpan(0, 0, 0, 0, 0), true);
     }
@@ -40,6 +41,8 @@ namespace Cheapees
           this.ProgressBarVisibility = System.Windows.Visibility.Collapsed;
           this.StatusPercentage = 0;
           this.LastUpdated = DateTime.Now;
+
+          this.CommitServiceStatus();
         }
         catch (Exception e)
         {

@@ -20,8 +20,9 @@ namespace Cheapees
       this.Description = "Retrieves current inventory being Fulfilled-By-Amazon.";
       this._uiUpdateThreshold = new TimeSpan(0, 0, 0, 1, 0);
       this.ServiceId = "InventoryDataFba";
+      this.GetLastUpdated();
 
-      this.UpdateFrequency = new UpdateFrequency(new TimeSpan(0, 2, 0, 0, 0), false);
+      this.UpdateFrequency = new UpdateFrequency(new TimeSpan(0, 4, 0, 0, 0), false);
     }
 
     protected override async Task UpdateAsync()
@@ -44,6 +45,8 @@ namespace Cheapees
           this.ProgressBarVisibility = System.Windows.Visibility.Collapsed;
           this.StatusPercentage = 0;
           this.LastUpdated = DateTime.Now;
+
+          this.CommitServiceStatus();
         }
         catch (Exception e)
         {
