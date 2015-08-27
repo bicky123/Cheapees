@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -50,6 +53,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -217,12 +221,18 @@
     <Compile Include="ViewModels\ChannelAdvisorInventoryDataViewModel.cs" />
     <Compile Include="ViewModels\FbaInventoryDataViewModel.cs" />
     <Compile Include="ViewModels\FbaSalesDataViewModel.cs" />
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StatusControl.xaml.cs">
       <DependentUpon>StatusControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\UpdatableViewModelBase.cs" />
     <Compile Include="UpdateFrequency.cs" />
     <Compile Include="ViewModels\VendorDataFtpViewModel.cs" />
+    <Compile Include="Views\StatusView.xaml.cs">
+      <DependentUpon>StatusView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -235,9 +245,17 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\StatusControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\StatusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -575,6 +593,7 @@
       <DependentUpon>CheapeesModel.edmx</DependentUpon>
       <LastGenOutput>CheapeesModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -121,6 +121,34 @@ namespace Cheapees
             foreach (var attrPair in attrResponse.ResultData)
             {
               item.AttributeList.Add(attrPair.Name, attrPair.Value);
+              if (attrPair.Name.Equals("Amazon Category"))
+              {
+                item.AmazonCategory = attrPair.Value;
+              }
+              else if (attrPair.Name.Equals("FBA Notes"))
+              {
+                item.FbaNotes = attrPair.Value;
+              }
+              else if (attrPair.Name.Equals("Is Chocolate"))
+              {
+                item.IsMeltable = attrPair.Value;
+              }
+              else if (attrPair.Name.Equals("Foreign Market Restriction"))
+              {
+                item.ForeignMarketRestrictions = attrPair.Value;
+              }
+              else if (attrPair.Name.Equals("Marketplace Restrictions"))
+              {
+                item.MarketplaceRestrictions = attrPair.Value;
+              }
+              else if (attrPair.Name.Equals("Pricing: Seller Cost Formula"))
+              {
+                item.MultiPackQuantity = attrPair.Value;
+              }
+              else if (attrPair.Name.Equals("Perishable?"))
+              {
+                item.Perishable = attrPair.Value;
+              }
             }
 
             inventory.Add(item);
@@ -128,12 +156,22 @@ namespace Cheapees
 
           itemCriteria.PageNumber += 1;
         }
+
+        CommitToDatabase(inventory);
       }
       catch (Exception e)
       {
         throw new Exception(string.Format("ChannelAdvisorInventoryService - {0}", e.Message));
       }
 
+    }
+
+    private void CommitToDatabase(List<InventoryItem> inventory)
+    {
+      using (var db = new CheapeesEntities())
+      {
+        
+      }
     }
   }
 

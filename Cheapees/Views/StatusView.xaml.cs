@@ -12,25 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Threading;
 
 namespace Cheapees
 {
   /// <summary>
-  /// Interaction logic for MainWindow.xaml
+  /// Interaction logic for StatusView.xaml
   /// </summary>
-  public partial class MainWindow : Window
+  public partial class StatusView : UserControl
   {
-
-    
-    public MainWindow()
+    public StatusView()
     {
       InitializeComponent();
 
-      StatusView statusView = new StatusView();
-      tabStatus.Content = statusView;
-
-      /*
       ChannelAdvisorInventoryDataViewModel caInventoryVm = new ChannelAdvisorInventoryDataViewModel();
       StatusControl caInventoryVmStatus = new StatusControl(caInventoryVm);
       caInventoryVmStatus.exp.IsExpanded = true;
@@ -79,7 +72,6 @@ namespace Cheapees
 
       StatusMonitor monitor = new StatusMonitor(viewModels);
       monitor.BeginChecking();
-      */
     }
   }
 }

@@ -5,10 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cheapees"
         mc:Ignorable="d"
-        Title="CMA Status" Height="650" Width="525">
-  <Grid Background="AliceBlue">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-      <StackPanel Margin="0 0 0 0" Background="White" Name="stkStatuses" />
-    </ScrollViewer>
-  </Grid>
+        Title="Cheapees Management Console" Height="800" Width="600" MinHeight="300" MinWidth="600">
+  
+  <DockPanel>
+    <Menu DockPanel.Dock="Top" BorderBrush="#FF686868">
+      <Menu.Background>
+        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+          <GradientStop Color="#FFF6F6F6"/>
+          <GradientStop Color="#FFEAE8E8"/>
+          <GradientStop Color="#FFDCD9D9" Offset="1"/>
+          <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+      </Menu.Background>
+      <MenuItem Header="File">
+        <MenuItem Header="Help"></MenuItem>
+        <MenuItem Header="Exit"></MenuItem>
+      </MenuItem>
+    </Menu>
+    <TabControl>
+      <TabItem x:Name="tabStatus">
+        <TabItem.Header>
+          <Label FontFamily="Segoe UI Light" FontSize="24">Status</Label>
+        </TabItem.Header>
+      </TabItem>
+      <TabItem x:Name="tabSettings">
+        <TabItem.Header>
+          <Label FontFamily="Segoe UI Light" FontSize="24">Settings</Label>
+        </TabItem.Header>
+      </TabItem>
+    </TabControl>
+  </DockPanel>
 </Window>
