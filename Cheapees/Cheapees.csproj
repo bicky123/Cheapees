@@ -68,6 +68,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AmazonFulfilledInventory.cs">
+      <DependentUpon>CheapeesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CheapeesModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

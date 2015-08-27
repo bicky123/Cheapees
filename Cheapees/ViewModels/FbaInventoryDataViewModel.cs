@@ -37,7 +37,7 @@ namespace Cheapees
           this.ProgressBarVisibility = System.Windows.Visibility.Visible;
 
           //Download data
-          DownloadSalesData();
+          DownloadInventoryData();
 
           //Status
           this.Status = UpdatableStatus.Ok;
@@ -59,8 +59,9 @@ namespace Cheapees
       });
     }
 
-    private void DownloadSalesData()
+    private void DownloadInventoryData()
     {
+
       this.StatusDescription = string.Format("Creating MWS client");
       // Set up MWS client
       string accessKey = System.Configuration.ConfigurationManager.AppSettings["MwsAccK"];
@@ -191,6 +192,111 @@ namespace Cheapees
         requestGetReport.Report = file;
         var responseToGetReport = client.GetReport(requestGetReport);
       }
+
+      // Update DB with content of report
+      this.StatusDescription = string.Format("Loading inventory data from report file");
+      var fbaQuantities = LoadInventoryFromFile(saveFileName);
+
+      this.StatusDescription = string.Format("Saving data to database");
+      CommitToDatabase(fbaQuantities);
     }
+
+    public List<FbaInventoryQuantity> LoadInventoryFromFile(string fileName)
+    {
+      List<FbaInventoryQuantity> fbaQuantities = new List<FbaInventoryQuantity>();
+
+      using (StreamReader file = new StreamReader(fileName))
+      {
+        string[] headers = file.ReadLine().Split('\t');
+
+        int colSku = -1;
+        int colAsin = -1;
+        int colFnsku = -1;
+        int colFulfillable = -1;
+        int colTotal = -1;
+        int colInboundShipped = -1;
+        int colInboundWorking = -1;
+        int colInboundReceiving = -1;
+
+        // Find headers' column indexes
+        for (int i = 0; i < headers.Length; i++)
+        {
+          if (headers[i].Equals("sku"))
+            colSku = i;
+          else if (headers[i].Equals("asin"))
+            colAsin = i;
+          else if (headers[i].Equals("fnsku"))
+            colFnsku = i;
+          else if (headers[i].Equals("afn-fulfillable-quantity"))
+            colFulfillable = i;
+          else if (headers[i].Equals("afn-total-quantity"))
+            colTotal = i;
+          else if (headers[i].Equals("afn-inbound-working-quantity"))
+            colInboundWorking = i;
+          else if (headers[i].Equals("afn-inbound-shipped-quantity"))
+            colInboundShipped = i;
+          else if (headers[i].Equals("afn-inbound-receiving-quantity"))
+            colInboundReceiving = i;
+        }
+        
+        string line;
+
+        while ((line = file.ReadLine()) != null)
+        {
+          FbaInventoryQuantity fbaQuantity = new FbaInventoryQuantity();
+          string[] delimitedLine = line.Split('\t');
+          fbaQuantity.Sku = delimitedLine[colSku];
+          fbaQuantity.Asin = delimitedLine[colAsin];
+          fbaQuantity.Fnsku = delimitedLine[colFnsku];
+          fbaQuantity.FulfillableQuantity = int.Parse(delimitedLine[colFulfillable]);
+          fbaQuantity.TotalQuantity = int.Parse(delimitedLine[colTotal]);
+          fbaQuantity.InboundWorkingQuantity = int.Parse(delimitedLine[colInboundWorking]);
+          fbaQuantity.InboundShippedQuantity = int.Parse(delimitedLine[colInboundShipped]);
+          fbaQuantity.InboundReceivingQuantity = int.Parse(delimitedLine[colInboundReceiving]);
+
+          fbaQuantities.Add(fbaQuantity);
+        }
+      }
+      return fbaQuantities;
+    }
+
+    public void CommitToDatabase(List<FbaInventoryQuantity> fbaQuantities)
+    {
+      using (var db = new CheapeesEntities())
+      {
+        // Clear table first
+        db.AmazonFulfilledInventories.RemoveRange(db.AmazonFulfilledInventories);
+
+        foreach (var qty in fbaQuantities)
+        {
+          AmazonFulfilledInventory dbInv = new AmazonFulfilledInventory();
+          dbInv.Asin = qty.Asin;
+          dbInv.FbaSku = qty.Sku;
+          dbInv.Fnsku = qty.Fnsku;
+          dbInv.FulfillableQuantity = qty.FulfillableQuantity;
+          dbInv.InboundReceivingQuantity = qty.InboundReceivingQuantity;
+          dbInv.InboundShippedQuantity = qty.InboundShippedQuantity;
+          dbInv.InboundWorkingQuantity = qty.InboundWorkingQuantity;
+          dbInv.TotalQuantity = qty.TotalQuantity;
+
+          db.AmazonFulfilledInventories.Add(dbInv);
+        }
+
+        db.SaveChanges();
+      }
+    }
+  }
+
+  public class FbaInventoryQuantity
+  {
+    public string Sku;
+    public string Asin;
+    public string Fnsku;
+
+    public int FulfillableQuantity;
+    public int TotalQuantity;
+    public int InboundShippedQuantity;
+    public int InboundWorkingQuantity;
+    public int InboundReceivingQuantity;
   }
 }

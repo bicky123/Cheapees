@@ -147,6 +147,10 @@ namespace Cheapees
 
     public Dictionary<String, String> AttributeList;
 
+    //Attribute Fields
+
+    public string AmazonCategory, FbaNotes, IsMeltable, ForeignMarketRestrictions, MarketplaceRestrictions, MultiPackQuantity, Perishable;
+
     public InventoryItem()
     {
       AttributeList = new Dictionary<string, string>();

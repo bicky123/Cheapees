@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CheapeesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AmazonFulfilledInventory">
+          <Key>
+            <PropertyRef Name="FbaSku" />
+          </Key>
+          <Property Name="FbaSku" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Asin" Type="nvarchar" MaxLength="12" />
+          <Property Name="Fnsku" Type="nvarchar" MaxLength="12" />
+          <Property Name="FulfillableQuantity" Type="int" />
+          <Property Name="TotalQuantity" Type="int" />
+          <Property Name="InboundWorkingQuantity" Type="int" />
+          <Property Name="InboundShippedQuantity" Type="int" />
+          <Property Name="InboundReceivingQuantity" Type="int" />
+        </EntityType>
         <EntityType Name="MerchantFulfilledSales">
           <Key>
             <PropertyRef Name="Invoice" />
@@ -25,6 +38,7 @@
           <Property Name="LastSuccessfulUpdate" Type="datetime" />
         </EntityType>
         <EntityContainer Name="CheapeesModelStoreContainer">
+          <EntitySet Name="AmazonFulfilledInventory" EntityType="Self.AmazonFulfilledInventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MerchantFulfilledSales" EntityType="Self.MerchantFulfilledSales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceStatuses" EntityType="Self.ServiceStatuses" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -42,6 +56,7 @@
         <EntityContainer Name="CheapeesEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ServiceStatuses" EntityType="Self.ServiceStatus" />
           <EntitySet Name="MerchantFulfilledSales" EntityType="CheapeesModel.MerchantFulfilledSale" />
+          <EntitySet Name="AmazonFulfilledInventories" EntityType="CheapeesModel.AmazonFulfilledInventory" />
         </EntityContainer>
         <EntityType Name="MerchantFulfilledSale">
           <Key>
@@ -54,6 +69,19 @@
           <Property Name="Sku" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="AmazonFulfilledInventory">
+          <Key>
+            <PropertyRef Name="FbaSku" />
+          </Key>
+          <Property Name="FbaSku" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Asin" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Fnsku" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="FulfillableQuantity" Type="Int32" />
+          <Property Name="TotalQuantity" Type="Int32" />
+          <Property Name="InboundWorkingQuantity" Type="Int32" />
+          <Property Name="InboundShippedQuantity" Type="Int32" />
+          <Property Name="InboundReceivingQuantity" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -78,6 +106,20 @@
                 <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
                 <ScalarProperty Name="Marketplace" ColumnName="Marketplace" />
                 <ScalarProperty Name="Invoice" ColumnName="Invoice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AmazonFulfilledInventories">
+            <EntityTypeMapping TypeName="CheapeesModel.AmazonFulfilledInventory">
+              <MappingFragment StoreEntitySet="AmazonFulfilledInventory">
+                <ScalarProperty Name="InboundReceivingQuantity" ColumnName="InboundReceivingQuantity" />
+                <ScalarProperty Name="InboundShippedQuantity" ColumnName="InboundShippedQuantity" />
+                <ScalarProperty Name="InboundWorkingQuantity" ColumnName="InboundWorkingQuantity" />
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+                <ScalarProperty Name="FulfillableQuantity" ColumnName="FulfillableQuantity" />
+                <ScalarProperty Name="Fnsku" ColumnName="Fnsku" />
+                <ScalarProperty Name="Asin" ColumnName="Asin" />
+                <ScalarProperty Name="FbaSku" ColumnName="FbaSku" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

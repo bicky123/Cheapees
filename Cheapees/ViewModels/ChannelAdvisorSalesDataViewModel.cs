@@ -82,7 +82,7 @@ namespace Cheapees
         criteria.OrderCreationFilterBeginTimeGMT = beginTime;
         criteria.OrderCreationFilterEndTimeGMT = DateTime.Now;
         criteria.DetailLevel = "High";
-        List<Sales> listOfSales = new List<Sales>();
+        List<ChannelAdvisorSale> listOfSales = new List<ChannelAdvisorSale>();
 
         int page = 1;
         criteria.PageNumberFilter = page;
@@ -101,7 +101,7 @@ namespace Cheapees
           {
             foreach (OrderLineItemItem item in order.ShoppingCart.LineItemSKUList)
             {
-              Sales sale = new Sales();
+              ChannelAdvisorSale sale = new ChannelAdvisorSale();
               sale.SKU = item.SKU;
               sale.Quantity = item.Quantity;
               sale.Marketplace = item.ItemSaleSource;
@@ -127,7 +127,7 @@ namespace Cheapees
       }
     }
 
-    private void CommitToDatabase(List<Sales> sales)
+    private void CommitToDatabase(List<ChannelAdvisorSale> sales)
     {
       using (var db = new CheapeesEntities())
       {
@@ -152,7 +152,7 @@ namespace Cheapees
     }
   }
 
-  class Sales
+  class ChannelAdvisorSale
   {
     //All details are on an order level. The price reflects the actual price paid by the customer.
     public string SKU { get; set; }
@@ -162,6 +162,6 @@ namespace Cheapees
     public DateTime OrderTime { get; set; }
     public string Invoice { get; set; }
 
-    public Sales() { }
+    public ChannelAdvisorSale() { }
   }
 }

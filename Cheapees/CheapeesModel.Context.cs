@@ -27,5 +27,6 @@ namespace Cheapees
     
         public virtual DbSet<ServiceStatus> ServiceStatuses { get; set; }
         public virtual DbSet<MerchantFulfilledSale> MerchantFulfilledSales { get; set; }
+        public virtual DbSet<AmazonFulfilledInventory> AmazonFulfilledInventories { get; set; }
     }
 }
