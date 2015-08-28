@@ -28,6 +28,16 @@
           <Label FontFamily="Segoe UI Light" FontSize="24">Status</Label>
         </TabItem.Header>
       </TabItem>
+      <TabItem x:Name="tabData">
+        <TabItem.Header>
+          <Label FontFamily="Segoe UI Light" FontSize="24">Data</Label>
+        </TabItem.Header>
+      </TabItem>
+      <TabItem x:Name="tabLog">
+        <TabItem.Header>
+          <Label FontFamily="Segoe UI Light" FontSize="24">Log</Label>
+        </TabItem.Header>
+      </TabItem>
       <TabItem x:Name="tabSettings">
         <TabItem.Header>
           <Label FontFamily="Segoe UI Light" FontSize="24">Settings</Label>

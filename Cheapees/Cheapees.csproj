@@ -75,6 +75,9 @@
     <Compile Include="AmazonFulfilledInventory.cs">
       <DependentUpon>CheapeesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AmazonListing.cs">
+      <DependentUpon>CheapeesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CheapeesModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,6 +92,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CheapeesModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory.cs">
+      <DependentUpon>CheapeesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MerchantFulfilledSale.cs">
       <DependentUpon>CheapeesModel.tt</DependentUpon>
@@ -121,6 +127,83 @@
     <Compile Include="ServiceStatus.cs">
       <DependentUpon>CheapeesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\MarketplaceWebServiceProducts\MarketplaceWebServiceProducts.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\MarketplaceWebServiceProductsClient.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\MarketplaceWebServiceProductsConfig.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\MarketplaceWebServiceProductsException.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProductsMock.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\ASINIdentifier.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\ASINListType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\AttributeSetList.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\Categories.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\CompetitivePriceList.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\CompetitivePriceType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\CompetitivePricingType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\Error.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\ErrorDetail.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetCompetitivePricingForASINRequest.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetCompetitivePricingForASINResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetCompetitivePricingForASINResult.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetCompetitivePricingForSKURequest.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetCompetitivePricingForSKUResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetCompetitivePricingForSKUResult.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetLowestOfferListingsForASINRequest.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetLowestOfferListingsForASINResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetLowestOfferListingsForASINResult.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetLowestOfferListingsForSKURequest.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetLowestOfferListingsForSKUResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetLowestOfferListingsForSKUResult.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetMatchingProductForIdRequest.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetMatchingProductForIdResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetMatchingProductForIdResult.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetMatchingProductRequest.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetMatchingProductResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetMatchingProductResult.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetMyPriceForASINRequest.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetMyPriceForASINResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetMyPriceForASINResult.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetMyPriceForSKURequest.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetMyPriceForSKUResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetMyPriceForSKUResult.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetProductCategoriesForASINRequest.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetProductCategoriesForASINResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetProductCategoriesForASINResult.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetProductCategoriesForSKURequest.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetProductCategoriesForSKUResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetProductCategoriesForSKUResult.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetServiceStatusRequest.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetServiceStatusResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\GetServiceStatusResult.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\IdentifierType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\IdListType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\IMWSResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\ListMatchingProductsRequest.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\ListMatchingProductsResponse.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\ListMatchingProductsResult.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\LowestOfferListingList.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\LowestOfferListingType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\Message.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\MessageList.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\MoneyType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\NumberOfOfferListingsList.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\OfferListingCountType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\OffersList.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\OfferType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\Points.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\PriceType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\Product.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\ProductList.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\ProductsUtil.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\QualifiersType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\RelationshipList.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\ResponseHeaderMetadata.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\ResponseMetadata.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\SalesRankList.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\SalesRankType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\SellerSKUIdentifier.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\SellerSKUListType.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\ServiceStatusEnum.cs" />
+    <Compile Include="Services\MarketplaceWebServiceProducts\Model\ShippingTimeType.cs" />
     <Compile Include="Services\MarketplaceWebService\Attributes\MarketplaceWebServiceAttribute.cs" />
     <Compile Include="Services\MarketplaceWebService\Attributes\MarketplaceWebServiceRequestHeaderAttribute.cs" />
     <Compile Include="Services\MarketplaceWebService\Attributes\MarketplaceWebServiceStreamAttribute.cs" />
@@ -282,6 +365,9 @@
     </EntityDeploy>
     <None Include="CheapeesModel.edmx.diagram">
       <DependentUpon>CheapeesModel.edmx</DependentUpon>
+    </None>
+    <None Include="Connections.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -496,7 +582,7 @@
     </None>
     <None Include="Service References\ChannelAdvisorOrderService\OrderService.wsdl" />
     <None Include="Settings - Example.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -523,6 +609,7 @@
   <ItemGroup>
     <None Include="Settings.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -583,6 +670,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="CheapeesModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CheapeesModel.edmx</DependentUpon>
@@ -593,8 +683,20 @@
       <DependentUpon>CheapeesModel.edmx</DependentUpon>
       <LastGenOutput>CheapeesModel.cs</LastGenOutput>
     </Content>
-    <Resource Include="icon.ico" />
+    <Resource Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetCompetitivePricingForASINResponse.xml" />
+    <Resource Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetCompetitivePricingForSKUResponse.xml" />
+    <Resource Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetLowestOfferListingsForASINResponse.xml" />
+    <Resource Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetLowestOfferListingsForSKUResponse.xml" />
+    <Resource Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetMatchingProductForIdResponse.xml" />
+    <Resource Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetMatchingProductResponse.xml" />
+    <Resource Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetMyPriceForASINResponse.xml" />
+    <Resource Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetMyPriceForSKUResponse.xml" />
+    <Resource Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetProductCategoriesForASINResponse.xml" />
+    <Resource Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetProductCategoriesForSKUResponse.xml" />
+    <Resource Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetServiceStatusResponse.xml" />
+    <Resource Include="Services\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.ListMatchingProductsResponse.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

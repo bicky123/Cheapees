@@ -88,10 +88,14 @@ namespace Cheapees
 
         APIResultOfArrayOfInventoryItemResponse response;
 
-        while ((response = invClient.GetFilteredInventoryItemList(cred, accountID, itemCriteria, detailLevel, "", "")).ResultData.Length != 0)
+        do
         {
           //invItemDownloadedCount += response.ResultData.Length;
           //this.StatusDescription = string.Format("Downloading Inventory Item List ({0} completed)", invItemDownloadedCount);
+
+          response = invClient.GetFilteredInventoryItemList(cred, accountID, itemCriteria, detailLevel, "", "");
+          if (response.ResultData == null)
+            break;
 
           foreach (var responseItem in response.ResultData)
           {
@@ -117,37 +121,42 @@ namespace Cheapees
             item.Weight = (decimal)responseItem.Weight;
             item.Width = (decimal)responseItem.Width;
 
-            var attrResponse = invClient.GetInventoryItemAttributeList(cred, accountID, item.Sku);
-            foreach (var attrPair in attrResponse.ResultData)
+
+            bool getAttributes = false;
+            if (getAttributes)
             {
-              item.AttributeList.Add(attrPair.Name, attrPair.Value);
-              if (attrPair.Name.Equals("Amazon Category"))
+              var attrResponse = invClient.GetInventoryItemAttributeList(cred, accountID, item.Sku);
+              foreach (var attrPair in attrResponse.ResultData)
               {
-                item.AmazonCategory = attrPair.Value;
-              }
-              else if (attrPair.Name.Equals("FBA Notes"))
-              {
-                item.FbaNotes = attrPair.Value;
-              }
-              else if (attrPair.Name.Equals("Is Chocolate"))
-              {
-                item.IsMeltable = attrPair.Value;
-              }
-              else if (attrPair.Name.Equals("Foreign Market Restriction"))
-              {
-                item.ForeignMarketRestrictions = attrPair.Value;
-              }
-              else if (attrPair.Name.Equals("Marketplace Restrictions"))
-              {
-                item.MarketplaceRestrictions = attrPair.Value;
-              }
-              else if (attrPair.Name.Equals("Pricing: Seller Cost Formula"))
-              {
-                item.MultiPackQuantity = attrPair.Value;
-              }
-              else if (attrPair.Name.Equals("Perishable?"))
-              {
-                item.Perishable = attrPair.Value;
+                item.AttributeList.Add(attrPair.Name, attrPair.Value);
+                if (attrPair.Name.Equals("Amazon Category"))
+                {
+                  item.AmazonCategory = attrPair.Value;
+                }
+                else if (attrPair.Name.Equals("FBA Notes"))
+                {
+                  item.FbaNotes = attrPair.Value;
+                }
+                else if (attrPair.Name.Equals("Is Chocolate"))
+                {
+                  item.IsMeltable = attrPair.Value;
+                }
+                else if (attrPair.Name.Equals("Foreign Market Restriction"))
+                {
+                  item.ForeignMarketRestrictions = attrPair.Value;
+                }
+                else if (attrPair.Name.Equals("Marketplace Restrictions"))
+                {
+                  item.MarketplaceRestrictions = attrPair.Value;
+                }
+                else if (attrPair.Name.Equals("Pricing: Seller Cost Formula"))
+                {
+                  item.MultiPackQuantity = attrPair.Value;
+                }
+                else if (attrPair.Name.Equals("Perishable?"))
+                {
+                  item.Perishable = attrPair.Value;
+                }
               }
             }
 
@@ -155,7 +164,7 @@ namespace Cheapees
           }
 
           itemCriteria.PageNumber += 1;
-        }
+        } while (response.ResultData != null && response.ResultData.Length != 0);
 
         CommitToDatabase(inventory);
       }
@@ -170,7 +179,38 @@ namespace Cheapees
     {
       using (var db = new CheapeesEntities())
       {
-        
+        db.Configuration.AutoDetectChangesEnabled = false;
+        db.Configuration.ValidateOnSaveEnabled = false;
+
+        for (int i = 0; i < inventory.Count; i++)
+        {
+          var item = inventory[i];
+          var entity = db.Inventories.Where(o => o.Sku.Equals(item.Sku)).FirstOrDefault();
+          if (entity == null)
+          {
+            entity = new Inventory();
+            entity.Asin = item.Asin;
+            entity.Sku = item.Sku;
+            entity.Title = item.Title;
+
+            db.Inventories.Add(entity);
+          }
+          else
+          {
+            entity.Asin = item.Asin;
+            entity.Sku = item.Sku;
+            entity.Title = item.Title;
+          }
+          
+          if (i % 1000 == 0)
+          {
+            // Save every 1000 records
+            this.StatusDescription = string.Format("Committing to database ({0}/{1})", i, inventory.Count);
+            this.StatusPercentage = (i * 100) / inventory.Count;
+            db.SaveChanges();
+          }
+        }
+        db.SaveChanges();
       }
     }
   }

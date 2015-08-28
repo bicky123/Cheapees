@@ -19,7 +19,7 @@ namespace Cheapees
 
       this.GetLastUpdated();
 
-      this.UpdateFrequency = new UpdateFrequency(new TimeSpan(0, 0, 1, 0, 0), false);
+      this.UpdateFrequency = new UpdateFrequency(new TimeSpan(0, 1, 0, 0, 0), false);
     }
 
     protected override async Task UpdateAsync()

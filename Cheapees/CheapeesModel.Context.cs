@@ -25,8 +25,10 @@ namespace Cheapees
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ServiceStatus> ServiceStatuses { get; set; }
-        public virtual DbSet<MerchantFulfilledSale> MerchantFulfilledSales { get; set; }
         public virtual DbSet<AmazonFulfilledInventory> AmazonFulfilledInventories { get; set; }
+        public virtual DbSet<MerchantFulfilledSale> MerchantFulfilledSales { get; set; }
+        public virtual DbSet<ServiceStatus> ServiceStatuses { get; set; }
+        public virtual DbSet<Inventory> Inventories { get; set; }
+        public virtual DbSet<AmazonListing> AmazonListings { get; set; }
     }
 }
