@@ -60,13 +60,19 @@ namespace Cheapees
       stkStatuses.Children.Add(fbaPrepVmStatus);
 
       List<UpdatableViewModelBase> viewModels = new List<UpdatableViewModelBase>();
-      //viewModels.Add(ftpVm);
-      viewModels.Add(caSalesVm);
-      viewModels.Add(amzListingVm);
-      viewModels.Add(fbaSalesVm);
-      viewModels.Add(caInventoryVm);
-      viewModels.Add(fbaInventoryVm);
-      viewModels.Add(fbaPrepVm);
+
+      bool updateAll = false;
+
+      if (updateAll)
+      {
+        viewModels.Add(ftpVm);
+        viewModels.Add(caSalesVm);
+        viewModels.Add(amzListingVm);
+        viewModels.Add(fbaSalesVm);
+        viewModels.Add(caInventoryVm);
+        viewModels.Add(fbaInventoryVm);
+        viewModels.Add(fbaPrepVm);
+      }
 
       StatusMonitor monitor = new StatusMonitor(viewModels);
       monitor.BeginChecking();

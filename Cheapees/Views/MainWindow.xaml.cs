@@ -34,7 +34,9 @@ namespace Cheapees
       
       StatusView statusView = new StatusView();
       tabStatus.Content = statusView;
-      
+
+      DataView dataView = new DataView();
+      tabData.Content = dataView;
     }
   }
 }

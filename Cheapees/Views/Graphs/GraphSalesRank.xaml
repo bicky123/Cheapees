@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Cheapees.GraphSalesRank"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cheapees"
+             xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
+             mc:Ignorable="d">
+  <UserControl.Width>
+    Auto
+  </UserControl.Width>
+  <UserControl.Height>
+    Auto
+  </UserControl.Height>
+
+  <oxy:PlotView x:Name="oxyPlotView" MinHeight="300" MinWidth="300" Model="{Binding }"/>
+
+</UserControl>
