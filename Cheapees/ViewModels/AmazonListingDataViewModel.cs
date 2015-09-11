@@ -63,8 +63,12 @@ namespace Cheapees
     {
       using (var db = new CheapeesEntities())
       {
-        foreach (var a in asinData)
+        db.Configuration.AutoDetectChangesEnabled = false;
+        db.Configuration.ValidateOnSaveEnabled = false;
+
+        for (int i = 0; i < asinData.Count; i++)
         {
+          var a = asinData[i];
           AmazonListing dbEntry = new AmazonListing();
           dbEntry.Asin = a.Asin;
           dbEntry.BuyBox = a.BuyBoxTotalPrice;
@@ -76,6 +80,14 @@ namespace Cheapees
           {
             db.AmazonListings.Add(dbEntry);
           }
+
+          if (i % 1000 == 0)
+          {
+            this.StatusDescription = string.Format("Committing to database - {0:0.00}% ({1}/{2})", i * 100.0 / asinData.Count, i, asinData.Count);
+            this.StatusPercentage = i * 100 / asinData.Count;
+            db.SaveChanges();
+          }
+
         }
 
         db.SaveChanges();
@@ -84,6 +96,8 @@ namespace Cheapees
 
     private List<string> GetAsinList()
     {
+      this.StatusDescription = string.Format("Getting local ASIN list");
+
       List<string> asins = new List<string>();
       List<Inventory> listings = new List<Inventory>();
       using (var db = new CheapeesEntities())

@@ -30,5 +30,6 @@ namespace Cheapees
         public virtual DbSet<ServiceStatus> ServiceStatuses { get; set; }
         public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<AmazonListing> AmazonListings { get; set; }
+        public virtual DbSet<AmazonPrepInstruction> AmazonPrepInstructions { get; set; }
     }
 }

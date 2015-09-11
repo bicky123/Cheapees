@@ -54,13 +54,19 @@ namespace Cheapees
       fbaSalesVmStatus.exp.IsExpanded = true;
       stkStatuses.Children.Add(fbaSalesVmStatus);
 
+      FbaPrepDataViewModel fbaPrepVm = new FbaPrepDataViewModel();
+      StatusControl fbaPrepVmStatus = new StatusControl(fbaPrepVm);
+      fbaPrepVmStatus.exp.IsExpanded = true;
+      stkStatuses.Children.Add(fbaPrepVmStatus);
+
       List<UpdatableViewModelBase> viewModels = new List<UpdatableViewModelBase>();
       //viewModels.Add(ftpVm);
-      //viewModels.Add(caSalesVm);
-      //viewModels.Add(amzListingVm);
-      //viewModels.Add(fbaSalesVm);
+      viewModels.Add(caSalesVm);
+      viewModels.Add(amzListingVm);
+      viewModels.Add(fbaSalesVm);
       viewModels.Add(caInventoryVm);
-      //viewModels.Add(fbaInventoryVm);
+      viewModels.Add(fbaInventoryVm);
+      viewModels.Add(fbaPrepVm);
 
       StatusMonitor monitor = new StatusMonitor(viewModels);
       monitor.BeginChecking();

@@ -29,6 +29,14 @@
           <Property Name="CurrentlyOwnBuyBox" Type="bit" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="AmazonPrepInstructions">
+          <Key>
+            <PropertyRef Name="Asin" />
+          </Key>
+          <Property Name="Asin" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="Labelling" Type="nvarchar" MaxLength="30" />
+          <Property Name="PrepRequired" Type="nvarchar" MaxLength="30" />
+        </EntityType>
         <EntityType Name="Inventory">
           <Key>
             <PropertyRef Name="Sku" />
@@ -59,6 +67,7 @@
         <EntityContainer Name="CheapeesModelStoreContainer">
           <EntitySet Name="AmazonFulfilledInventory" EntityType="Self.AmazonFulfilledInventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AmazonListings" EntityType="Self.AmazonListings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AmazonPrepInstructions" EntityType="Self.AmazonPrepInstructions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MerchantFulfilledSales" EntityType="Self.MerchantFulfilledSales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceStatuses" EntityType="Self.ServiceStatuses" Schema="dbo" store:Type="Tables" />
@@ -105,6 +114,7 @@
           <EntitySet Name="ServiceStatuses" EntityType="Self.ServiceStatus" />
           <EntitySet Name="Inventories" EntityType="CheapeesModel.Inventory" />
           <EntitySet Name="AmazonListings" EntityType="CheapeesModel.AmazonListing" />
+          <EntitySet Name="AmazonPrepInstructions" EntityType="CheapeesModel.AmazonPrepInstruction" />
         </EntityContainer>
         <EntityType Name="Inventory">
           <Key>
@@ -124,6 +134,14 @@
           <Property Name="BuyBox" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="CurrentlyOwnBuyBox" Type="Boolean" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="AmazonPrepInstruction">
+          <Key>
+            <PropertyRef Name="Asin" />
+          </Key>
+          <Property Name="Asin" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Labelling" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PrepRequired" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -181,6 +199,15 @@
                 <ScalarProperty Name="CurrentlyOwnBuyBox" ColumnName="CurrentlyOwnBuyBox" />
                 <ScalarProperty Name="BuyBox" ColumnName="BuyBox" />
                 <ScalarProperty Name="SalesRank" ColumnName="SalesRank" />
+                <ScalarProperty Name="Asin" ColumnName="Asin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AmazonPrepInstructions">
+            <EntityTypeMapping TypeName="CheapeesModel.AmazonPrepInstruction">
+              <MappingFragment StoreEntitySet="AmazonPrepInstructions">
+                <ScalarProperty Name="PrepRequired" ColumnName="PrepRequired" />
+                <ScalarProperty Name="Labelling" ColumnName="Labelling" />
                 <ScalarProperty Name="Asin" ColumnName="Asin" />
               </MappingFragment>
             </EntityTypeMapping>

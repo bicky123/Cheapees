@@ -22,11 +22,16 @@ namespace Cheapees
   public partial class MainWindow : Window
   {
 
-    
+
     public MainWindow()
     {
       InitializeComponent();
 
+      //run product category for all of our ASINs
+      //AmzFunctions func = new AmzFunctions();
+      //var asins = func.GetProductCategories(func.GetAsinList());
+
+      
       StatusView statusView = new StatusView();
       tabStatus.Content = statusView;
       

@@ -122,7 +122,7 @@ namespace Cheapees
             item.Width = (decimal)responseItem.Width;
 
 
-            bool getAttributes = false;
+            bool getAttributes = true;
             if (getAttributes)
             {
               var attrResponse = invClient.GetInventoryItemAttributeList(cred, accountID, item.Sku);
@@ -205,7 +205,7 @@ namespace Cheapees
           if (i % 1000 == 0)
           {
             // Save every 1000 records
-            this.StatusDescription = string.Format("Committing to database ({0}/{1})", i, inventory.Count);
+            this.StatusDescription = string.Format("Committing to database - {0:0.00}% ({0}/{1})", i * 100.0 / inventory.Count, i, inventory.Count);
             this.StatusPercentage = (i * 100) / inventory.Count;
             db.SaveChanges();
           }

@@ -264,11 +264,16 @@ namespace Cheapees
     {
       using (var db = new CheapeesEntities())
       {
+        db.Configuration.AutoDetectChangesEnabled = false;
+        db.Configuration.ValidateOnSaveEnabled = false;
+
         // Clear table first
         db.AmazonFulfilledInventories.RemoveRange(db.AmazonFulfilledInventories);
+        db.SaveChanges();
 
-        foreach (var qty in fbaQuantities)
+        for (int i = 0; i < fbaQuantities.Count; i++)
         {
+          var qty = fbaQuantities[i];
           AmazonFulfilledInventory dbInv = new AmazonFulfilledInventory();
           dbInv.Asin = qty.Asin;
           dbInv.FbaSku = qty.Sku;
@@ -280,6 +285,14 @@ namespace Cheapees
           dbInv.TotalQuantity = qty.TotalQuantity;
 
           db.AmazonFulfilledInventories.Add(dbInv);
+
+          if (i % 1000 == 0)
+          {
+            this.StatusDescription = string.Format("Committing to database - {0:0.00}% ({1}/{2})", i * 100.0 / fbaQuantities.Count, i, fbaQuantities.Count);
+            this.StatusPercentage = i * 100 / fbaQuantities.Count;
+            db.SaveChanges();
+          }
+
         }
 
         db.SaveChanges();
